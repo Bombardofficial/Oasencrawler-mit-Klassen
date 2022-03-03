@@ -73,7 +73,7 @@ void game::thegame()
 
                 p->relicscounter = 0;
                 p->life = 5;
-                w->max_relics;
+                w->max_relics = 0;
                 p->pos_X = 0;
                 p->pos_Y = 0;
                 w->level_rand = w->level_rand + 2;
