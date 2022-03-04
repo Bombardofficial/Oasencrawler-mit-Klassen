@@ -59,21 +59,6 @@ void player::richtung()
 	
 
 }
-bool player::probe_a()
-{
-
-	return false;
-}
-
-bool player::probe_b()
-{
-	return false;
-}
-
-bool player::probe_c()
-{
-	return false;
-}
 
 void player::setWorld(world* w) // setting the connection between the world and player classes
 {

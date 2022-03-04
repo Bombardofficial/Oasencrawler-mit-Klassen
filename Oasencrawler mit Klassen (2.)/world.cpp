@@ -54,8 +54,9 @@ void world::printWorld()
 	for (int zeile = 0; zeile < 5; zeile++) {
 
 		for (int spalten = 0; spalten < 5; spalten++) {
-
+			
 			cout << world[spalten][zeile];
+			cout << " ";
 		}
 		if (zeile != 5) {
 			cout << "\n";
@@ -67,6 +68,7 @@ void world::printWorld()
 void world::elementcheck() //check if this field got relic,brunnen, or gefahren, then change it to an empty field
 {
 	if (oasis[p->pos_X][p->pos_Y] == 0) {
+		cout << "\n\n\n\n\n\n";
 		if (p->potioncounter > 0) {
 			//for the potion to work properly
 			p->potioncounter--;
@@ -126,7 +128,7 @@ void world::gefahren()
 				}
 			}
 		} while (hidepos != 1 && hidepos != 2);
-		
+		system("cls");
 		if (rand() % 2 == 1 && hidepos == 1) {
 			cout << "Nice! The native did not find you! Go and find the relics!" << endl;
 		}
@@ -183,7 +185,7 @@ void world::brunnen()
 				}
 			}
 		} while (bags != 1 && bags != 2);
-		
+		system("cls");
 		if (rand() % 2 == 1 && bags == 1) { //if we chose the big bag
 			
 			cout << "Nice! You have found a big invisility potion! You will be invisible for the natives during your next 4 steps!" << endl;

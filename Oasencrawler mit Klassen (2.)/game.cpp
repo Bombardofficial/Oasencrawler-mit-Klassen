@@ -28,14 +28,14 @@ void game::start_game()
     cout << "Loading "; this_thread::sleep_for(chrono::milliseconds(500)); cout << "."; this_thread::sleep_for(chrono::milliseconds(300));
     cout << "."; this_thread::sleep_for(chrono::milliseconds(200)); cout << "."; this_thread::sleep_for(chrono::milliseconds(1000));
     system("cls");
-
+    
     cout << "Your name: " << endl;
     cin >> name;
     system("cls");
-
+    cout << "                                                     ";
     cout << "Welcome " << name << "!" << endl;
 
-    cout << "You ended up in an abandoned cave where, according to legends, many natives live, protecting hundreds of years old relics. " << endl
+    cout << "\nYou ended up in an abandoned cave where, according to legends, many natives live, protecting hundreds of years old relics. " << endl
         << "Your mission is to collect the stolen relics without losing all of your lives." << endl
         << "You have five lives, however, you can relax in various hiding places in the cave where you can earn bonus lives." << endl << "Good luck!" << endl << endl << endl;
 
@@ -82,6 +82,7 @@ void game::thegame()
                 w->generate_elements();
             }
             else {
+                system("cls");
                 cout << "CONGRATULATION! YOU COLLECTED ALL OF THE RELICS ON EVERY LEVEL! YOU WON!" << endl;
                 exit(0);
             }

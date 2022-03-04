@@ -26,9 +26,6 @@ public:
 	void inc_life() { life++; }
 	void dec_life() { life--; }
 	void got_relics() { relicscounter++; }
-	bool probe_a(); 
-	bool probe_b();
-	bool probe_c();
 	
 	void setWorld(world* w);
 };
