@@ -25,27 +25,27 @@ void player::richtung()
 		case 'w':
 			if (pos_Y != 0) {
 				w->world[pos_X][pos_Y] = '.'; //correcting the layers between moves
-				w->world[pos_X][--pos_Y] = '#';
+				w->world[pos_X][--pos_Y] = w->buchstabe;
 			}
 			break;
 		case 'a':
 			if (pos_X != 0) {
 				w->world[pos_X][pos_Y] = '.';
-				w->world[--pos_X][pos_Y] = '#';
+				w->world[--pos_X][pos_Y] = w->buchstabe;
 			}
 			break;
 		case 's':
 			
 			if (pos_Y != 4) {
 				w->world[pos_X][pos_Y] = '.';
-				w->world[pos_X][++pos_Y] = '#';
+				w->world[pos_X][++pos_Y] = w->buchstabe;
 
 			}
 			break;
 		case 'd':
 			if (pos_X != 4) {
 				w->world[pos_X][pos_Y] = '.';
-				w->world[++pos_X][pos_Y] = '#';
+				w->world[++pos_X][pos_Y] = w->buchstabe;
 			}
 			break;
 		case '-':

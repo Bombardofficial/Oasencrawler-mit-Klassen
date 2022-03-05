@@ -26,6 +26,8 @@ public:
 	void inc_life() { life++; }
 	void dec_life() { life--; }
 	void got_relics() { relicscounter++; }
+	bool researcher;
+	bool adventurer;
 	
 	void setWorld(world* w);
 };

@@ -41,6 +41,31 @@ void game::start_game()
 
     system("pause");
     system("cls");
+    cout << "You can choose between two different characters to play with.\n\nAdventurer: easier to evade enemies, but takes more damage if you make the wrong choice.\nExplorer: harder to evade enemies, but takes less damage if you make the wrong choice." << endl;
+        
+    cout << "\nWhich character do you choose? Adventurer(1) or Researcher(2)?" << endl;
+
+    int castchoose;
+    do {
+        cin >> castchoose;
+        if (castchoose != 1 && castchoose != 2) {
+            cout << "Not possible." << endl;
+            if (cin.fail()) { // if the answer is not proper for the integer variable
+                cin.clear();
+                string s;
+                cin >> s;
+            }
+        }
+    } while (castchoose != 1 && castchoose != 2);
+    if (castchoose == 1) {
+        p->adventurer = true;
+        p->researcher = false;
+    }
+    else if (castchoose == 2) {
+        p->adventurer = false;
+        p->researcher = true;
+    }
+    system("cls");
     w->generate_world();
     w->generate_elements();
 
@@ -66,7 +91,7 @@ void game::thegame()
             level++;
             if (level < 4) {
                 cout << endl << "YOU FOUND ALL THE RELICS IN THIS PART OF THE CAVE!" << endl
-                    << "MOVE ON AND FIND MORE RELICS, BUT WATCH OUT! THERE ARE MORE NATIVES THAN YOU THINK!" << endl;
+                    << "MOVE ON AND FIND MORE RELICS, BUT WATCH OUT! THERE ARE MORE NATIVES THAN YOU THINK!\n" << endl;
 
                 system("pause");
                 system("cls");
@@ -83,7 +108,7 @@ void game::thegame()
             }
             else {
                 system("cls");
-                cout << "CONGRATULATION! YOU COLLECTED ALL OF THE RELICS ON EVERY LEVEL! YOU WON!" << endl;
+                cout << "\nCONGRATULATION! YOU COLLECTED ALL OF THE RELICS ON EVERY LEVEL! YOU WON!" << endl;
                 exit(0);
             }
         }

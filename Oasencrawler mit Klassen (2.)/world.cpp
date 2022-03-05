@@ -35,7 +35,13 @@ void world::generate_elements()
 
 void world::generate_world()
 {
-	char buchstabe = '#'; //the symbol of the player in the world
+	
+	if (p->adventurer) {
+		buchstabe = 'A'; //the symbol of the player in the world
+	}
+	else {
+		buchstabe = 'R';
+	}
 	
 	for (int zeile = 0; zeile < 5; zeile++)
 	{
@@ -68,13 +74,14 @@ void world::printWorld()
 void world::elementcheck() //check if this field got relic,brunnen, or gefahren, then change it to an empty field
 {
 	if (oasis[p->pos_X][p->pos_Y] == 0) {
-		cout << "\n\n\n\n\n\n";
+		cout << "\n";
 		if (p->potioncounter > 0) {
 			//for the potion to work properly
 			p->potioncounter--;
 			cout << "Remaining steps as invisible: " << p->potioncounter << endl;
 		}
-		
+		cout << "\nYour lifepoints: " << p->life << endl;
+		cout << "Found relics: " << p->relicscounter << endl << endl;
 	}
 	if (oasis[p->pos_X][p->pos_Y] == 1) {
 		
@@ -99,7 +106,7 @@ void world::elementcheck() //check if this field got relic,brunnen, or gefahren,
 		if (p->potioncounter > 0) {
 			cout << "There was a native, but did not see you, because of the potion." << endl;
 			p->potioncounter--;
-			cout << "You have " << p->potioncounter << " steps left." << endl;
+			cout << "You have " << p->potioncounter << " steps left.\n" << endl;
 			
 		}
 		
@@ -136,7 +143,7 @@ void world::gefahren()
 			cout << "Nice! The native did not find you! Go and find the relics!" << endl;
 		}
 		else {
-			cout << "Run! The native has found you and damaged you!" << endl;
+			cout << "Run! The native has found you and damaged you!\nYou lost a lifepoint." << endl;
 			p->dec_life();
 			cout << "\nYour lifepoints: " << p->life << endl;
 			cout << "Found relics: " << p->relicscounter << endl << endl;
@@ -144,7 +151,13 @@ void world::gefahren()
 	}
 	else {
 		cout << "\nOh no! A native attacked ";
-		if (rand() % 6 == 1) {
+		if (p->adventurer) { //if player is adventurer
+			native_dmg = 6;
+		}
+		else { // if player is researcher
+			native_dmg = 5;
+		}
+		if (rand() % native_dmg == 1) {
 			cout << "and damaged you out of nowhere.\nYou lost a lifepoint." << endl;
 			p->dec_life();
 			cout << "\nYour lifepoints: " << p->life << endl;
@@ -152,6 +165,8 @@ void world::gefahren()
 		}
 		else {
 			cout << "you, but you could run away." << endl;
+			cout << "\nYour lifepoints: " << p->life << endl;
+			cout << "Found relics: " << p->relicscounter << endl << endl;
 		}
 	}
 	
@@ -199,10 +214,18 @@ void world::brunnen()
 		}
 		else { //if there was a danger anyway
 			if (bags == 1) {
-				cout << "Ouch! There was a snake in the bag and bit you." << endl;
-				cout << "You lost 2 lifepoint." << endl;
-				p->dec_life();
-				p->dec_life();
+				if (p->researcher) {
+					cout << "Ouch! There was a snake in the bag and bit you.\nFortunately you brought antidote." << endl;
+					cout << "You lost 1 lifepoint." << endl;
+					p->dec_life();
+				}
+				else {
+					cout << "Ouch! There was a snake in the bag and bit you." << endl;
+					cout << "You lost 2 lifepoint." << endl;
+					p->dec_life();
+					p->dec_life();
+				}
+				
 				if (p->life <= 0) {
 					cout << "\nUnfortunately the natives got you and you could not escape in time!" << endl;
 					cout << "Game over!" << endl;
@@ -211,9 +234,16 @@ void world::brunnen()
 				
 			}
 			else if (bags == 2) {
-				cout << "Ouch! There was a rat in the bag and bit you." << endl;
-				cout << "You lost 1 lifepoint." << endl;
-				p->dec_life();
+				if (p->researcher) {
+					cout << "Oh! There was a rat in the bag, but found out in time." << endl;
+					
+				}
+				else {
+					cout << "Ouch! There was a rat in the bag and bit you." << endl;
+					cout << "You lost 1 lifepoint." << endl;
+					p->dec_life();
+				}
+				
 				if (p->life <= 0) {
 					cout << "\nUnfortunately the natives got you and you could not escape in time!" << endl;
 					cout << "Game over!" << endl;
@@ -228,7 +258,7 @@ void world::brunnen()
 	}
 	else {
 		if (p->life == 5) {
-			cout << "You have maximum lifepoints, so there is no extra for you." << endl;
+			cout << "You have maximum lifepoints, so there is no extra for you.\n" << endl;
 		}
 		else {
 			cout << "You could chill a little bit and earned a life point. Keep it up!" << endl;
