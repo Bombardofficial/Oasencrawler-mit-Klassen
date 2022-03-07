@@ -1,0 +1,47 @@
+@startuml
+class player {
++player(life: Integer)
++life : Integer
++relicscounter : Integer
++pos_X : Integer
++pos_Y : Integer
++potioncounter : Integer
++won() : Boolean
++richtung() : Void
++inc_life() : Void
++dec_life() : Void
++got_relics() : Void
++researcher : Boolean
++adventurer : Boolean
++setWorld() : Void
+}
+class world {
++oasis[5][5] : Integer
++world[5][5] : Char
++max_relics : Integer
++generate_elements() : Void
++generate_world(): Void
++printWorld() : Void
++elementcheck() : Void
++level_rand : Integer
++native_dmg : Integer
++buchstabe : Char
++gefahren() : Void
++relics() : Void
++brunnen() : Void
++setPlayer() : Void
+
+}
+class game {
++game()
++start_game() : Void
++thegame() : Void
++level : Integer
++name : String
+
+}
+player .right.> world
+world ..> player
+player --o game
+world --o game
+@enduml

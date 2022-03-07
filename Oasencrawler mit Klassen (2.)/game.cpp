@@ -3,6 +3,7 @@
 #include "world.h"
 #include <chrono>
 #include <thread>
+#include <cassert>
 #include <iostream>
 using namespace std;
 
@@ -88,8 +89,10 @@ void game::thegame()
         w->elementcheck();
         
         if (p->won()) {
+            assert(p->won() == true);
             level++;
             if (level < 4) {
+                assert(level < 4);
                 cout << endl << "YOU FOUND ALL THE RELICS IN THIS PART OF THE CAVE!" << endl
                     << "MOVE ON AND FIND MORE RELICS, BUT WATCH OUT! THERE ARE MORE NATIVES THAN YOU THINK!\n" << endl;
 

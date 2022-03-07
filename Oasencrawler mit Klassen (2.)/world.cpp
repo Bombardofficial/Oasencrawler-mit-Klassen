@@ -1,7 +1,7 @@
 #include "world.h"
 #include "player.h"
 #include <iostream>
-
+#include <cassert>
 using namespace std;
 void world::generate_elements()
 {
@@ -76,6 +76,7 @@ void world::elementcheck() //check if this field got relic,brunnen, or gefahren,
 	if (oasis[p->pos_X][p->pos_Y] == 0) {
 		cout << "\n";
 		if (p->potioncounter > 0) {
+			assert(p->potioncounter > 0);
 			//for the potion to work properly
 			p->potioncounter--;
 			cout << "Remaining steps as invisible: " << p->potioncounter << endl;
@@ -137,10 +138,10 @@ void world::gefahren()
 		} while (hidepos != 1 && hidepos != 2);
 		system("cls");
 		if (rand() % 2 == 1 && hidepos == 1) {
-			cout << "Nice! The native did not find you! Go and find the relics!" << endl;
+			cout << "Nice! The native did not find you! Go and find the relics!\n" << endl;
 		}
 		else if (rand() % 2 == 1 && hidepos == 2) {
-			cout << "Nice! The native did not find you! Go and find the relics!" << endl;
+			cout << "Nice! The native did not find you! Go and find the relics!\n" << endl;
 		}
 		else {
 			cout << "Run! The native has found you and damaged you!\nYou lost a lifepoint." << endl;

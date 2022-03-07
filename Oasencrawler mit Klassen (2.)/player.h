@@ -15,12 +15,7 @@ public:
 	int relicscounter;
 	int pos_X = 0;
 	int pos_Y = 0;
-	bool s_potion;
-	bool b_potion;
 	int potioncounter;
-	int a;
-	int b;
-	int c;
 	bool won();
 	void richtung();
 	void inc_life() { life++; }
